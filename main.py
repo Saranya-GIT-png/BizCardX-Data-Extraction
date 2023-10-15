@@ -13,14 +13,14 @@ from streamlit_option_menu import option_menu
 mydb = psycopg2.connect(host = 'localhost',user = 'postgres',password='saranya',port = 5432,database = 'bizcard')
 mycursor = mydb.cursor()
 
-#tittle
-st.markdown("<h1 style='text-align: center; color: black ;'>BizCardX: Extracting Business Card Data with OCR </h1>", unsafe_allow_html=True)
+#title
+st.markdown("<h1 style='text-align: center; color: purple ;'>BizCardX: Extracting Business Card Data with OCR </h1>", unsafe_allow_html=True)
 
 
 #option menu
 selected = option_menu(
     menu_title=None,
-    options=["Image", "Contact"],
+    options=["Data Extraction and Modification", "About"],
     icons=["image", "at"],
     default_index=0,
     orientation="horizontal"
@@ -67,7 +67,7 @@ def extracted_text(picture):
     return ext_dic
 
 
-if selected == "Image":
+if selected == "Data Extraction and Modification":
     image = st.file_uploader(label="Upload the image", type=['png', 'jpg', 'jpeg'], label_visibility="hidden")
 
 
@@ -189,3 +189,13 @@ if selected == "Image":
 
     else:
         st.write("Upload an image")
+
+if selected == "About":
+       
+    col1, col2 = st.columns(2)
+    
+    with col2:
+        st.title('BizCardX: Extracting Business Card Data with OCR')
+        st.write(
+            "BizCardX is to automate and simplify the process of capturing and managing contact information from business cards, saving users time and effort. It is particularly useful for professionals who frequently attend networking events, conferences, and meetings where they receive numerous business cards that need to be converted into digital contacts.")
+
